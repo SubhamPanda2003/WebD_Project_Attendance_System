@@ -1,0 +1,25 @@
+{
+  "name": "attendance_project_grp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SubhamPanda2003/WebD_Project_Attendance_System.git"
+  },
+  "author": "Subham Panda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SubhamPanda2003/WebD_Project_Attendance_System/issues"
+  },
+  "homepage": "https://github.com/SubhamPanda2003/WebD_Project_Attendance_System#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.11"
+  }
+}
