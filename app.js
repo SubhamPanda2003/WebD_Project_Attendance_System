@@ -69,6 +69,11 @@ const feedSchecma = mongoose.Schema({
 const feedModal = mongoose
 	.model('students', feedSchecma);
 
+
+    
+    const feedModalT = mongoose
+	.model('teachers', feedSchecma);
+
 // Handling get request
 
 
@@ -87,6 +92,31 @@ app.post("/form", function (req, res) {
 		.catch(err => {
 			res.render('form.ejs',
 				{ msg: "Check Details." });
+		});
+})
+
+
+app.get('/formTeacher', (req, res)=>{
+    
+    res.status(200).render('formTeacher.ejs');
+})
+
+
+
+
+app.post("/formTeacher", function (req, res) {
+	const feedData = new feedModalT({
+		name: req.body.name,
+		email: req.body.email,
+		pass: req.body.pass
+	});
+	feedData.save()
+		.then(data => {
+			res.render('formTeacher.ejs',
+        { msg: "Your feedback successfully saved." });
+		})
+		.catch(err => {
+			console.log("Error TeacherForm not submitted");
 		});
 })
 //----------------------------login-----------------------------------------------------
@@ -117,6 +147,38 @@ app.post("/login",function(req,res){
         console.log("First SignUp Then come to login");
 
     }
+});
+});
+const Usert = mongoose.model('teacher', {
+    name: String,
+    email: String,
+     pass: String
+});
+app.get("/loginTeacher",function(req,res){
+	res.status(200).render('loginTeacher.ejs');
+});
+app.post("/loginTeacher",function(req,res){
+	var name= req.body.name;
+	  const email= req.body.email;
+	  const pass= req.body.pass;
+	  const data = email;
+
+	 
+
+   Usert.findOne({'email' : new RegExp(data, 'i')}, function(err, docs){
+  if(docs)       
+ {
+   if(docs.pass==pass)
+  {
+	  res.status(200).render('Acct.ejs');//-----------------------------------Success Page -----------------------
+  }
+  else{
+	  res.status(200).render('home.ejs');//---------------------------------fail page------------------------------
+  }}
+  else{
+	  console.log("First SignUp Then come to login for Teachers");
+
+  }
 });
 });
 
