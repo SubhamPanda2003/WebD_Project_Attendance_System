@@ -37,15 +37,23 @@ app.use(express.urlencoded());
 
 
 
-app.get('/form', (req, res)=>{
+app.get('/student_Register', (req, res)=>{
     
-    res.status(200).render('form.ejs');
+    res.status(200).render('student_Register.ejs');
+})
+app.get('/Home', (req, res)=>{
+    
+    res.status(200).render('Home.ejs');
+})
+app.get('/Privacy', (req, res)=>{
+    
+    res.status(200).render('privacy.ejs');
 })
 
 
 app.get('/login', (req, res)=>{
     
-    res.status(200).render('login.ejs');
+    res.status(200).render('student_login.ejs');
 })
 
 
@@ -78,27 +86,32 @@ const feedModal = mongoose
 
 
 // Handling data after submission of form
-app.post("/form", function (req, res) {
+app.post("/student_Register", function (req, res) {
+	if(req.body.pass==req.body.cpass){
 	const feedData = new feedModal({
 		name: req.body.name,
 		email: req.body.email,
 		pass: req.body.pass
+
 	});
 	feedData.save()
 		.then(data => {
-			res.render('form.ejs',
+			res.render('student_Register.ejs',
         { msg: "Your feedback successfully saved." });
 		})
 		.catch(err => {
-			res.render('form.ejs',
+			res.render('student_Register.ejs',
 				{ msg: "Check Details." });
 		});
+	}
+	else
+	res.render('Home.ejs');
 })
 
 
 app.get('/formTeacher', (req, res)=>{
     
-    res.status(200).render('formTeacher.ejs');
+    res.status(200).render('teacher_Register.ejs');
 })
 
 
@@ -124,6 +137,7 @@ const User = mongoose.model('student', {
     name: String,
     email: String,
      pass: String
+	 
 });
 app.post("/login",function(req,res){
       var name= req.body.name;
@@ -155,7 +169,7 @@ const Usert = mongoose.model('teacher', {
      pass: String
 });
 app.get("/loginTeacher",function(req,res){
-	res.status(200).render('loginTeacher.ejs');
+	res.status(200).render('teacher_login.ejs');
 });
 app.post("/loginTeacher",function(req,res){
 	var name= req.body.name;
@@ -181,7 +195,37 @@ app.post("/loginTeacher",function(req,res){
   }
 });
 });
+//----------------------------------------------------deleting a student from a database ---------------------------
+app.route("/studentsDelete/:emailTitle")
+.get(function(req, res){
 
+	User.deleteOne(
+	  {email: req.params.emailTitle},
+	  function(err){
+		if (!err){
+		  res.send("Successfully deleted the corresponding article.");
+		} else {
+		  res.send(err);
+		}
+	  }
+	);
+  });
+//---------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------deleting a teacher from database--------------------------------
+app.route("/teacherDelete/:emailTitle")
+.get(function(req, res){
+
+	Usert.deleteOne(
+	  {email: req.params.emailTitle},
+	  function(err){
+		if (!err){
+		  res.send("Successfully deleted the corresponding article.");
+		} else {
+		  res.send(err);
+		}
+	  }
+	);
+  });
 // Server setup
 app.listen(port, () => {
 	console.log("server is running");
