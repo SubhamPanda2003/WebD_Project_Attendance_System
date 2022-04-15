@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<style> 
+.nav {
+  list-style-type:armenian;
+ 
+  margin-top: 0%;
+  
+background-color: rgba(0,0,0,1);
+position: relative;
+width:98%;
+margin-left: -0.625rem;
+margin-top: -0.625rem;
+height: 140px;
+left: 0%;
+
+
+}
+body{
+background-image: url("bg1.jpg");
+}
+
+.design{
+box-sizing: border-box;
+position: relative;
+border-style:solid;
+ border-color:#333;
+width: 35%;
+height: 500px;
+background-color: rgba(0,0,0,1);
+margin-left: auto;
+margin-right: auto;
+margin-top: 100px;
+padding-top: -50px;
+border-radius: 1.3rem;
+
+}
+.bg2{
+padding-top: -50px;
+
+
+}
+
+li {
+  float: right;
+  font-size: 24px;
+  margin-top: 88px;
+  font-family: cursive;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+li a:hover {
+  background-color: rgba(24, 208, 214, 0.479);
+  height: 20px; 
+
+
+}
+
+li a  :active{
+
+background-color: rgb(202, 99, 8);
+
+}
+.logo{
+width: 288px;
+height: 298px;
+border-radius: 135px;
+margin-left: -39px;
+top:5px
+
+
+}
+
+.content{
+font-family: cursive;
+
+color: aliceblue;
+
+
+}
+img{
+   margin-top: 20px;
+  margin-left: 70px;
+  border-radius: 34px;
+}
+body {font-family: Arial, Helvetica, sans-serif;}
+
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+ .student{
+    
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+
+ float: left;
+
+
+ }
+ #student{
+  background-color:rgba(75,68,68,1);
+  border-radius: 34px;
+ }
+ #regs{
+   text-align: center;
+
+
+ }
+ #teacher{
+     background-color:rgba(208,157,31,1);
+    border-radius: 34px;
+ }
+.login {
+  background-color:rgba(208,157,31,1);
+    border-radius: 34px;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  margin-left: 120px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+
+
+
+
+.container {
+  padding: 16px;
+  color: #ccc;
+}
+
+
+</style>
+<body>
+  
+    <ul class="nav">
+        <li><a class="active" href="Home.html">Home</a></li>
+        <li><a href="teacher_login.html">Sign Up/Login</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="About.html">About</a></li>
+        <img src="logo.jpg" alt="logo" class="logo">
+      </ul>
+      
+
+
+
+     <div class ="design">
+        
+        <form  method="post">
+           <button type="button"id="student"class="student">Student Login</button>
+           <button type="button" id="teacher"class="student">Teacher Login</button>
+          <br><br><br>
+            <div class="container">
+              <label for="uname"><b>Email Id</b></label>
+              <input type="text" placeholder="Enter Username" name="uname" required>
+          <br><br>
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" required>
+              <br><br>
+              <label for="uname"><b>Name</b></label>
+              <input type="text" placeholder="Enter Username" name="uname" required>
+              <button type="submit" class="login">Login</button>
+              <br><br>
+              <p id="regs">New to Attrack <a href="student_Register.html">Create account</a></p>
+            </div>
+          
+            
+             
+          
+            </div>
+          </form>
+          
+
+      
+
+
+     </div>
+     
+     
+     
+
+
+
+     <script>
+        document.getElementById("student").addEventListener("click", myFunction);
+        function myFunction() {
+          window.location.href="student_login.html";
+        }
+      </script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
