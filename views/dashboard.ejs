@@ -11,32 +11,34 @@
 .nav {
   list-style-type:armenian;
  
-  margin-top: 0%;
+  margin-top: -10px;
   
 background-color: rgba(0,0,0,1);
 position: relative;
 width:98%;
-margin-left: -0.625rem;
-margin-top: -0.625rem;
+margin-left: -10px;
+margin-right: -10px;
 height: 140px;
 left: 0%;
 
 
 }
 body{
-background-image: url("../static/bg1.jpg");
-}
+background-image: url("bg1.jpg");
 
+
+
+}
 .design{
 box-sizing: border-box;
 position: relative;
 border-style:solid;
  border-color:#333;
-width: 35%;
-height: 500px;
+width: 75%;
+height: 1000px;
 background-color: rgba(0,0,0,1);
 margin-left: auto;
-margin-right: auto;
+
 margin-top: 100px;
 padding-top: -50px;
 border-radius: 1.3rem;
@@ -65,9 +67,8 @@ li a {
 }
 
 li a:hover {
-  background-color: rgba(24, 208, 214, 0.479);
+  background-color: rgba(24, 208, 214, 0.479); 
   height: 20px; 
-
 
 }
 
@@ -119,21 +120,24 @@ input[type=text], input[type=password] {
   width: 50%;
 
  float: left;
-
+border-radius: 35px;
 
  }
  #student{
-  background-color:rgba(75,68,68,1);
-  border-radius: 34px;
+
+  background-color:rgba(208,157,31,1) ;
+
+
+
  }
- #regs{
+ #new{
+
    text-align: center;
-
-
  }
+
  #teacher{
-     background-color:rgba(208,157,31,1);
-    border-radius: 34px;
+background-color:rgba(75,68,68,1)
+
  }
 .login {
   background-color:rgba(208,157,31,1);
@@ -145,6 +149,7 @@ input[type=text], input[type=password] {
   cursor: pointer;
   width: 50%;
   margin-left: 120px;
+
 }
 
 button:hover {
@@ -160,68 +165,40 @@ button:hover {
   padding: 16px;
   color: #ccc;
 }
+.das{
+text-align:center;
+background-color: rgb(255, 255, 255);
+height: 150px;
+margin-top: -35px;
+
+font-size: 60px;
+font-family:Arial, Helvetica, sans-serif;
+text-decoration: double;
+
+}
 
 
 </style>
 <body>
   
-  <ul class="nav">
-    <li><a class="active" href="/Home">Home</a></li>
-    <li><a href="/student_Register">Sign Up/Login</a></li>
-    <li><a href="/privacy">Privacy Policy</a></li>
-    <li><a href="/About">About</a></li>
-    <img src="../static/logo.jpg" alt="logo" class="logo">
-  </ul>d
-  
+    <ul class="nav">
+        <li><a class="active" href="Home.html">Log Out</a></li>
+        <li><a href="Dahboard">Dashboard</a></li>
+        <li><a href="classroom.html">Classroom</a></li>
+        <li><a href="About.html">About</a></li>
+        <img src="logo.jpg" alt="logo" class="logo">
+      </ul>d
+      
 
-
+<h1 class="das"><br>DASHBOARD</h1>
 
      <div class ="design">
         
-      <form  method="post" action="/loginTeacher">
-           <button type="button"id="student"class="student">Student Login</button>
-           <button type="button" id="teacher"class="student">Teacher Login</button>
-          <br><br><br>
-            <div class="container">
-              <label for="uname"><b>Email Id</b></label>
-              <input type="text" placeholder="Enter Username" name="email" required>
-          <br><br>
-              <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="pass" required>
-              <br><br>
-              <label for="uname"><b>Name</b></label>
-              <input type="text" placeholder="Enter Username" name="name" required>
-              <button type="submit" class="login">Login</button>
-              <br><br>
-              <p id="regs">New to Attrack <a href="/student_Register">Create account</a></p>
-            </div>
+        
           
-            
-             
-          
-            </div>
-          </form>
-          
-
-      
-
-
-     </div>
+ </div>
      
      
-     
-
-
-
-     <script>
-        document.getElementById("student").addEventListener("click", myFunction);
-        function myFunction() {
-          window.location.href="/login";
-        }
-      </script>
-
-
-
 
 
 

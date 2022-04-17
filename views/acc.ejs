@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+</head>
+<style>
+
+
+
+
+
+    
+</style>
+<body>
+    
+    
+        <li><%= name %></li>
+        <li><%= email %></li>
+        <li>student code::<%= num %></li>
+  
+    <form action=<%="/attendance/"+num %> method="post">
+      
+        give attendance
+        <input type="number" name="attends" id="">
+        
+        <button type="submit">Add this</button>
+    </form>
+
+    <h1>List of classes</h1>
+    <li><%= 'TC A' %></li>
+    <% for(var i=0;i<1000;i++){ %>
+        <% if( myMap[num][i]>0){ %>
+            
+        <li><%= i+" "+ myMap[i][num]  %></li>
+    <% } %>
+    <% } %>
+    
+</body>
+</html>
+
+
+

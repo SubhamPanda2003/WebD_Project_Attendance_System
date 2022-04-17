@@ -33,8 +33,9 @@ app.use(express.urlencoded());
 // Define and use pug engine so also
 // declare path on rendering
 
-
-
+let c=0;
+let d=0;
+var myMap = new Array(1000).fill().map(() => Array(1000).fill(0));;
 
 
 app.get('/student_Register', (req, res)=>{
@@ -69,7 +70,8 @@ mongoose.connect(
 const feedSchecma = mongoose.Schema({
 	name: String,
 	email: String,
-	pass: String
+	pass: String,
+	number:{ type: Number },
 });
 
 // Making a modal on our already
@@ -82,8 +84,7 @@ const feedModal = mongoose
     const feedModalT = mongoose
 	.model('teachers', feedSchecma);
 
-// Handling get request
-
+	
 
 // Handling data after submission of form
 app.post("/student_Register", function (req, res) {
@@ -91,7 +92,8 @@ app.post("/student_Register", function (req, res) {
 	const feedData = new feedModal({
 		name: req.body.name,
 		email: req.body.email,
-		pass: req.body.pass
+		pass: req.body.pass,
+		number:d++
 
 	});
 	feedData.save()
@@ -121,11 +123,12 @@ app.post("/formTeacher", function (req, res) {
 	const feedData = new feedModalT({
 		name: req.body.name,
 		email: req.body.email,
-		pass: req.body.pass
+		pass: req.body.pass,
+		number:c++
 	});
 	feedData.save()
 		.then(data => {
-			res.render('formTeacher.ejs',
+			res.render('teacher_Register.ejs',
         { msg: "Your feedback successfully saved." });
 		})
 		.catch(err => {
@@ -136,12 +139,21 @@ app.post("/formTeacher", function (req, res) {
 const User = mongoose.model('student', {
     name: String,
     email: String,
-     pass: String
-	 
+     pass: String,
+	 number:{ type: Number }
 });
+const Usert = mongoose.model('teacher', {
+    name: String,
+    email: String,
+     pass: String,
+	 number:{type : Number}
+});
+
+var email;
+var docs;
 app.post("/login",function(req,res){
       var name= req.body.name;
-		const email= req.body.email;
+		 email= req.body.email;
 		const pass= req.body.pass;
         const data = email;
 
@@ -152,7 +164,10 @@ app.post("/login",function(req,res){
    {
      if(docs.pass==pass)
     {
-        res.status(200).render('Acc.ejs');//-----------------------------------Success Page -----------------------
+		
+		
+		
+        res.status(200).render('Acc.ejs',{name:docs.name,email:email,myMap:myMap,num:docs.number,Usert:Usert});//-----------------------------------Success Page -----------------------
     }
     else{
         res.status(200).render('home.ejs');//---------------------------------fail page------------------------------
@@ -162,21 +177,25 @@ app.post("/login",function(req,res){
 
     }
 });
+
 });
-const Usert = mongoose.model('teacher', {
-    name: String,
-    email: String,
-     pass: String
+app.post("/attendance/:num", function (req, res) {
+	
+	console.log(myMap[req.params.num][req.body.attends]++);
+	
+	
 });
+
 app.get("/loginTeacher",function(req,res){
 	res.status(200).render('teacher_login.ejs');
 });
+var email;
 app.post("/loginTeacher",function(req,res){
 	var name= req.body.name;
-	  const email= req.body.email;
+	   email= req.body.email;
 	  const pass= req.body.pass;
 	  const data = email;
-
+      
 	 
 
    Usert.findOne({'email' : new RegExp(data, 'i')}, function(err, docs){
@@ -184,7 +203,8 @@ app.post("/loginTeacher",function(req,res){
  {
    if(docs.pass==pass)
   {
-	  res.status(200).render('Acct.ejs');//-----------------------------------Success Page -----------------------
+
+	  res.status(200).render('Acct.ejs',{name:docs.name,email:email,myMap:myMap,num:docs.number});//-----------------------------------Success Page -----------------------
   }
   else{
 	  res.status(200).render('home.ejs');//---------------------------------fail page------------------------------
@@ -211,6 +231,9 @@ app.route("/studentsDelete/:emailTitle")
 	);
   });
 //---------------------------------------------------------------------------------------------------------------------
+
+
+
 //-----------------------------------------------------deleting a teacher from database--------------------------------
 app.route("/teacherDelete/:emailTitle")
 .get(function(req, res){
@@ -226,6 +249,8 @@ app.route("/teacherDelete/:emailTitle")
 	  }
 	);
   });
+
+
 // Server setup
 app.listen(port, () => {
 	console.log("server is running");
